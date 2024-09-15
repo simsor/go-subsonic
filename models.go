@@ -26,8 +26,8 @@ type AlbumID3 struct {
 	SongCount int       `xml:"songCount,attr"`
 	Duration  int       `xml:"duration,attr"`
 	PlayCount int64     `xml:"playCount,attr,omitempty"`
-	Created   time.Time `xml:"created,attr"`
-	Starred   time.Time `xml:"starred,attr,omitempty"`
+	Created   *xsdDateTime `xml:"created,attr"`
+	Starred   *xsdDateTime `xml:"starred,attr,omitempty"`
 	Year      int       `xml:"year,attr,omitempty"`
 	Genre     string    `xml:"genre,attr,omitempty"`
 }
@@ -55,7 +55,7 @@ type Artist struct {
 	ID             string    `xml:"id,attr"`
 	Name           string    `xml:"name,attr"`
 	ArtistImageUrl string    `xml:"artistImageUrl,attr,omitempty"`
-	Starred        time.Time `xml:"starred,attr,omitempty"`
+	Starred        *xsdDateTime `xml:"starred,attr,omitempty"`
 	UserRating     int       `xml:"userRating,attr,omitempty"`
 	AverageRating  float64   `xml:"averageRating,attr,omitempty"`
 }
@@ -68,7 +68,7 @@ type ArtistID3 struct {
 	CoverArt       string      `xml:"coverArt,attr,omitempty"`
 	ArtistImageUrl string      `xml:"artistImageUrl,attr,omitempty"`
 	AlbumCount     int         `xml:"albumCount,attr"`
-	Starred        time.Time   `xml:"starred,attr,omitempty"`
+	Starred        *xsdDateTime   `xml:"starred,attr,omitempty"`
 }
 
 // ArtistInfo is all auxillary information about an artist from GetArtistInfo.
@@ -173,8 +173,8 @@ type Child struct {
 	AverageRating         float64   `xml:"averageRating,attr,omitempty"`
 	PlayCount             int64     `xml:"playCount,attr,omitempty"`
 	DiscNumber            int       `xml:"discNumber,attr,omitempty"`
-	Created               time.Time `xml:"created,attr,omitempty"`
-	Starred               time.Time `xml:"starred,attr,omitempty"`
+	Created               *xsdDateTime `xml:"created,attr,omitempty"`
+	Starred               *xsdDateTime `xml:"starred,attr,omitempty"`
 	AlbumID               string    `xml:"albumId,attr,omitempty"`
 	ArtistID              string    `xml:"artistId,attr,omitempty"`
 	Type                  string    `xml:"type,attr,omitempty"` // May be one of music, podcast, audiobook, video
@@ -189,7 +189,7 @@ type Directory struct {
 	Child         []*Child  `xml:"http://subsonic.org/restapi child,omitempty"`
 	Parent        string    `xml:"parent,attr,omitempty"`
 	Name          string    `xml:"name,attr"`
-	Starred       time.Time `xml:"starred,attr,omitempty"`
+	Starred       *xsdDateTime `xml:"starred,attr,omitempty"`
 	UserRating    int       `xml:"userRating,attr,omitempty"`
 	AverageRating float64   `xml:"averageRating,attr,omitempty"`
 	PlayCount     int64     `xml:"playCount,attr,omitempty"`
