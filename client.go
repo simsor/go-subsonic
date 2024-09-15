@@ -10,6 +10,7 @@
 package subsonic
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/xml"
 	"fmt"
@@ -139,8 +140,12 @@ func (s *Client) getValues(endpoint string, params url.Values) (*Response, error
 	if err != nil {
 		return nil, err
 	}
+
+	decoder := xml.NewDecoder(bytes.NewBuffer(responseBody))
+	decoder.DefaultSpace = "http://subsonic.org/restapi"
+
 	parsed := Response{}
-	err = xml.Unmarshal(responseBody, &parsed)
+	err = decoder.Decode(&parsed)
 	if err != nil {
 		return nil, err
 	}
